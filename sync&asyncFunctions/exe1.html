@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Synchronic Function</h1>
+    <p>Get Current Date and Time</p>
+    <button onclick="go()">go</button>
+    <script>
+        function go(){
+            console.log('start');
+            const currentDate = new Date();
+            const currentTime = currentDate.getTime();
+            console.log(`current date: ${currentDate}`);
+            console.log(`current time: ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`);
+            console.log('end');
+        }
+    </script>
+</body>
+</html>
