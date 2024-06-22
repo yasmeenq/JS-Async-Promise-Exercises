@@ -13,9 +13,12 @@
         function go(){
             console.log('start');
             const currentDate = new Date();
-            const currentTime = currentDate.getTime();
+            const currentTime = currentDate.getTime(); //doesn't work
             console.log(`current date: ${currentDate}`);
+            console.log(`current time: ${currentTime}`);
             console.log(`current time: ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`);
+            console.log(`current time: ${currentDate.toLocaleTimeString()}`); //best approach
+
             console.log('end');
         }
     </script>

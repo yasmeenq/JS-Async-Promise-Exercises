@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Input For Random Number</h1>
+    <input type="text" id="box" placeholder="enter random number:" />
+    <button onclick="start()">Go</button><br><br>
+    <div id="output"></div>
+    <script>
+
+        let intervalId = null; // Variable to store the interval ID
+
+        function start() {
+            let div = document.getElementById('output');
+            let box = document.getElementById('box');
+            let maxNum = parseInt(box.value); // Convert input to an integer
+
+            // Clear previous interval if it exists
+            if (intervalId !== null) {
+                clearInterval(intervalId);
+            }
+
+            // Start a new interval
+            intervalId = setInterval(() => {
+                let randNum = Math.floor(Math.random() * (maxNum + 1));
+                div.innerText = randNum;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

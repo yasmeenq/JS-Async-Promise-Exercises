@@ -10,17 +10,23 @@
     <p>Get Current Date and Time After 3 Seconds</p>
     <button onclick="go()">go</button>
     <script>
-        function go(){
+
+        function print(callback){
             console.log('start');
-            
+            callback(3000);
+            console.log('end');
+        }
+
+        function displayTime(ms){
             setTimeout( ()=>{
                 const currentDate = new Date();
-                const currentTime = currentDate.getTime();
                 console.log(`current date: ${currentDate}`);
-                console.log(`current time: ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`);      
-            } ,3000);
-            
-            console.log('end');
+                console.log(`current time: ${currentDate.toLocaleTimeString()} `);      
+            } ,ms);
+        }
+
+        function go(){
+            print(displayTime);
         }
     </script>
 </body>
