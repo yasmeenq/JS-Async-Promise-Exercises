@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>min number</label>
+    <input type="text" id="box1"/><br><br> 
+    <label>max number</label>
+    <input type="text" id="box2"/><br><br> 
+    <button onclick="start()">Send</button><br><br> 
+    <p id="display"></p>
+
+    <script>
+        function generate7BoomAfterDelayAsync(min, max){
+            return new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    min = Math.ceil(min);   // Round up to ensure min is inclusive
+                    max = Math.floor(max);  // Round down to ensure max is inclusive
+                    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+                    if(randomNum%7===0 || randomNum%10===7){
+                        resolve(randomNum);
+                    } else{
+                        reject(new Error("crash..."));
+                    }
+                    console.log(randomNum);
+                },1000);
+            });
+        }
+
+        async function start(){
+            try{
+                const minNum = document.getElementById('box1').value;
+                const maxNum = document.getElementById('box2').value;
+                const boomNumber = await generate7BoomAfterDelayAsync(minNum, maxNum);
+                let display = document.getElementById('display');
+                display.innerText = boomNumber;
+            }
+            catch(err){
+                display.innerText = err.message;
+            }
+        }
+
+    </script>  
+</body>
+</html>
