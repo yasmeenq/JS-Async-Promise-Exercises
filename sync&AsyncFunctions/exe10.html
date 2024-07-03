@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Color Clock</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 3rem;
+  }
+</style>
+</head>
+<body>
+  <div id="clock">00:00:00</div>
+
+  <script>
+    // Function to update the clock time
+    async function updateClock() {
+      const clockElement = document.getElementById('clock');
+      while (true) {
+        // Get the current time
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const timeString = `${hours}:${minutes}:${seconds}`;
+
+        // Update the clock display
+        clockElement.textContent = timeString;
+
+        // Change font color randomly
+        const randomColor = getRandomColor();
+        clockElement.style.color = randomColor;
+
+        // Wait for one second
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
+
+    // Function to generate a random color in hex format
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // Start updating the clock
+    updateClock();
+  </script>
+</body>
+</html>
