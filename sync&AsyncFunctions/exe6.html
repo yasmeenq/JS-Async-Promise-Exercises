@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .green{
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="startButton">Go Green</button>
+    <script>
+        const button = document.getElementById("startButton");
+        button.addEventListener("click", ()=>{
+            start();
+        });
+
+        function showAlert(){
+            return new Promise((resolve,reject) => {
+                setTimeout(() => {
+                    alert("done");
+                    resolve();
+                }, 500);
+            });
+        }
+        async function start(){
+            try{
+                document.body.classList.toggle('green');
+                const show = await showAlert();
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+    </script>
+</body>
+</html>
