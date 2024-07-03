@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latitude & Longitude</title>
+</head>
+<body>
+    <button id="btn">La'chtsan</button><br><br>
+    <span id="location"></span><br><br>
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', ()=>{
+            displayLocation();
+        })
+
+        async function getLocation() {
+            return new Promise((resolve, reject) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        position => resolve(position),
+                        error => reject(error)
+                    );
+                } else {
+                    reject(new Error("Geolocation is not supported by this browser."));
+                }
+            });
+        }
+
+        async function displayLocation() {
+            const locationSpan = document.getElementById('location');
+            try {
+                const position = await getLocation();
+                const { latitude, longitude } = position.coords;
+                locationSpan.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+            } catch (error) {
+                locationSpan.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+    </script>
+</body>
+</html>
