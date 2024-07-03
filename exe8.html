@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">la'chtsan</button>
+    <p id="result"></p>
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', ()=>{
+            getRandomNumberAfterDelay();
+        });
+
+        function generator(limit){
+            return new Promise((resolve,reject)=>{
+                setTimeout(() => {
+                    const randomNum = Math.floor(Math.random()*limit+1);
+                    resolve(randomNum);
+                }, 1000);
+            }); 
+        }
+        async function getRandomNumberAfterDelay(){
+            try{
+                const generateRandomNumber = await generator(300);
+                document.getElementById('result').textContent = generateRandomNumber;
+            }   
+            catch(err){
+                console.log(err);
+            }
+        } 
+    </script>
+</body>
+</html>
